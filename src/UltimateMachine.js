@@ -1,48 +1,33 @@
-// import { useState } from "react";
+const list = [
+  "The beach",
+  "The mountains",
+  "Vibrant cities",
+  "Roughing it",
+  "Ultimate survival",
+];
 
-// const ErrorMessage = () => <span>Oh noes you broke it!</span>;
-
-// const UltimateMachine = () => {
-//   const [showError, setShowError] = useState(false);
-
-//   const onClickHandler = () => {
-//     setShowError((i) => !i);
-//   };
-
-//   return (
-//     <section>
-//       <h1>The Ultimate Machine</h1>
-//       {showError && <ErrorMessage />}
-//       <button type="button" onClick={onClickHandler} aria-pressed={showError}>
-//         Toggle Error
-//       </button>
-//     </section>
-//   );
-// };
-
-// export default UltimateMachine;
-
-import { useState } from "react";
-
-const ErrorMessage = ({ showError }) =>
-  showError ? <span>Oh noes you broke it!</span> : null;
-
-const UltimateMachine = () => {
-  const [showError, setShowError] = useState(false);
-
-  const onClickHandler = () => {
-    setShowError((i) => !i);
-  };
-
-  return (
-    <section>
-      <h1>The Ultimate Machine</h1>
-      <ErrorMessage showError={showError} />
-      <button type="button" onClick={onClickHandler} aria-pressed={showError}>
-        Toggle Error
-      </button>
-    </section>
-  );
-};
+const UltimateMachine = () => (
+  <section>
+    <h1>Ultimate Holiday Destinations</h1>
+    <ul>{list}</ul>
+  </section>
+);
 
 export default UltimateMachine;
+
+// const list = [
+//   { name: "The beach" },
+//   { name: "The mountains" },
+//   { name: "Vibrant cities" },
+//   { name: "Roughing it" },
+//   { name: "Ultimate survival" },
+// ];
+
+// const UltimateMachine = () => (
+//   <section>
+//     <h1>Ultimate Holiday Destinations</h1>
+//     <ul>{list}</ul>
+//   </section>
+// );
+
+// export default UltimateMachine;
