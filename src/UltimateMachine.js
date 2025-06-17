@@ -9,25 +9,12 @@ const list = [
 const UltimateMachine = () => (
   <section>
     <h1>Ultimate Holiday Destinations</h1>
-    <ul>{list}</ul>
+    <ul>
+      {list.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
   </section>
 );
 
 export default UltimateMachine;
-
-// const list = [
-//   { name: "The beach" },
-//   { name: "The mountains" },
-//   { name: "Vibrant cities" },
-//   { name: "Roughing it" },
-//   { name: "Ultimate survival" },
-// ];
-
-// const UltimateMachine = () => (
-//   <section>
-//     <h1>Ultimate Holiday Destinations</h1>
-//     <ul>{list}</ul>
-//   </section>
-// );
-
-// export default UltimateMachine;
