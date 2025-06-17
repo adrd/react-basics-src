@@ -1,16 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const OnMessage = () => <span>The machine is ON!</span>;
 
 const OffMessage = () => <span>The machine is OFF!</span>;
-
-// const OnOff = ({ isOn }) => {
-//   if (isOn) {
-//     return <OnMessage />;
-//   } else {
-//     return <OffMessage />;
-//   }
-// };
 
 const UltimateMachine = () => {
   const [isOn, setIsOn] = useState(false);
@@ -19,26 +11,10 @@ const UltimateMachine = () => {
     setIsOn((i) => !i);
   };
 
-  const getMessage = () => {
-    if (isOn) {
-      return <OnMessage />;
-    } else {
-      return <OffMessage />;
-    }
-  };
-
-  //   let message;
-
-  //   if (isOn) {
-  //     message = <OnMessage />;
-  //   } else {
-  //     message = <OffMessage />;
-  //   }
-
   return (
     <section>
       <h1>The Ultimate Machine</h1>
-      {getMessage()}
+      {isOn ? <OnMessage /> : <OffMessage />}
       <button type="button" onClick={onClickHandler} aria-pressed={isOn}>
         On/Off
       </button>
