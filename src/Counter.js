@@ -1,13 +1,15 @@
-import React, { Fragment } from "react";
+import { Fragment, useState } from "react";
 
 const Counter = () => {
+  const [counter, setCounter] = useState(0);
+
   const onClickHandler = () => {
-    console.log("Button was pressed.");
+    setCounter(counter + 1);
   };
 
   return (
     <Fragment>
-      <p>0</p>
+      <p>{counter}</p>
       <button type="button" onClick={onClickHandler}>
         Increment
       </button>
