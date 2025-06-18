@@ -5,6 +5,7 @@ const initialState = {
   firstName: "",
   lastName: "",
   biography: "",
+  transport: "",
 };
 
 const Form = () => {
@@ -55,6 +56,19 @@ const Form = () => {
         onChange={onChangeHandler}
         value={formState.biography}
       />
+      <label htmlFor="transport">Preferred transport</label>
+      <select
+        id="transport"
+        name="transport"
+        onChange={onChangeHandler}
+        value={formState.transport}
+      >
+        <option>None selected</option>
+        <option value="planes">Planes</option>
+        <option value="trains">Trains</option>
+        <option value="cars">Cars</option>
+        <option value="boats">Boats</option>
+      </select>
       <button type="submit">Save</button>
       <button type="button" onClick={onClickHandler}>
         Clear Values
