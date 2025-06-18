@@ -4,6 +4,7 @@ import "./form.css";
 const initialState = {
   firstName: "",
   lastName: "",
+  biography: "",
 };
 
 const Form = () => {
@@ -45,6 +46,14 @@ const Form = () => {
         name="lastName"
         onChange={onChangeHandler}
         value={formState.lastName}
+      />
+      <label htmlFor="biography">Biography</label>
+      <textarea
+        id="biography"
+        name="biography"
+        row="10"
+        onChange={onChangeHandler}
+        value={formState.biography}
       />
       <button type="submit">Save</button>
       <button type="button" onClick={onClickHandler}>
