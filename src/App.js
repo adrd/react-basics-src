@@ -1,8 +1,8 @@
-import Stopwatch from "./Stopwatch";
+import Form from "./Form";
 
 const App = () => (
   <main>
-    <Stopwatch />
+    <Form />
   </main>
 );
 
