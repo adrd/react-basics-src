@@ -6,6 +6,7 @@ const initialState = {
   lastName: "",
   biography: "",
   transport: "",
+  agree: false,
 };
 
 const Form = () => {
@@ -17,9 +18,11 @@ const Form = () => {
     // console.log(e.target);
     // console.log(e.target.name);
     // console.log(e.target.value);
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
     setFormState({
       ...formState,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value,
     });
   };
 
@@ -69,6 +72,14 @@ const Form = () => {
         <option value="cars">Cars</option>
         <option value="boats">Boats</option>
       </select>
+      <label htmlFor="agree">I agree to the TOC</label>
+      <input
+        type="checkbox"
+        id="agree"
+        name="agree"
+        onChange={onChangeHandler}
+        checked={formState.agree}
+      />
       <button type="submit">Save</button>
       <button type="button" onClick={onClickHandler}>
         Clear Values
