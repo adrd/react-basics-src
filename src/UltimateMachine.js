@@ -1,30 +1,19 @@
-import { useState } from "react";
-
-const list = [
-  { id: 1, name: "The beach", topDestination: true },
-  { id: 2, name: "The mountains", topDestination: false },
-  { id: 3, name: "Vibrant cities", topDestination: true },
-  { id: 4, name: "Roughing it", topDestination: false },
-  { id: 5, name: "Ultimate survival", topDestination: false },
-];
+const sourceObj = {
+  val1: "Value 1",
+  val2: "Value 2",
+  val3: "Value 3",
+  val4: "Value 4",
+};
 
 const UltimateMachine = () => {
-  const [showAll, setShowAll] = useState(true);
-
   return (
     <section>
-      <h1>Ultimate Holiday Destinations</h1>
-      {list
-        .filter((item) => (showAll ? true : item.topDestination))
-        .map((item) => (
-          <li key={item.id.toString()}>{item.name}</li>
+      <h1>Ultimate Object Listing</h1>
+      <ol>
+        {Object.keys(sourceObj).map((key) => (
+          <li key={key}>{sourceObj[key]}</li>
         ))}
-      <button type="button" onClick={() => setShowAll(true)}>
-        Show all
-      </button>
-      <button type="button" onClick={() => setShowAll(false)}>
-        Show only top destinations
-      </button>
+      </ol>
     </section>
   );
 };
