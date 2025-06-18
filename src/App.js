@@ -1,10 +1,8 @@
-import Counter from "./Counter";
-import "./machine.css";
+import Stopwatch from "./Stopwatch";
 
 const App = () => (
   <main>
-    <h1>Ultimate Counter</h1>
-    <Counter />
+    <Stopwatch />
   </main>
 );
 
