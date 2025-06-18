@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import "./form.css";
 
+const initialState = {
+  firstName: "",
+  lastName: "",
+};
+
 const Form = () => {
   console.log("component start executing");
-  const [formState, setFormState] = useState({
-    firstName: "",
-    lastName: "",
-  });
+  const [formState, setFormState] = useState(initialState);
 
   const onChangeHandler = (e) => {
     // console.log(e);
@@ -17,6 +19,10 @@ const Form = () => {
       ...formState,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const onClickHandler = () => {
+    setFormState(initialState);
   };
 
   const onSubmitHandler = (e) => {
@@ -41,6 +47,9 @@ const Form = () => {
         value={formState.lastName}
       />
       <button type="submit">Save</button>
+      <button type="button" onClick={onClickHandler}>
+        Clear Values
+      </button>
     </form>
   );
 };
