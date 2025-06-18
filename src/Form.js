@@ -1,30 +1,6 @@
 import React, { useState } from "react";
 import "./form.css";
 
-// const Form = () => {
-//   console.log("component start executing");
-//   const [firstName, setFirstName] = useState("");
-
-//   const onChangeHandler = (e) => {
-//     // console.log(e);
-//     // console.log(e.target);
-//     // console.log(e.target.value);
-//     setFirstName(e.target.value);
-//   };
-
-//   return (
-//     <form>
-//       <span>{firstName}</span>
-//       <label htmlFor="firstName">First name</label>
-//       <input id="firstName" onChange={onChangeHandler} value={firstName} />
-//     </form>
-//   );
-// };
-
-// export default Form;
-
-////////////////////////////
-
 const Form = () => {
   console.log("component start executing");
   const [formState, setFormState] = useState({
@@ -43,9 +19,13 @@ const Form = () => {
     });
   };
 
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    console.log(formState);
+  };
+
   return (
-    <form>
-      <span>{`Your name is ${formState.firstName} ${formState.lastName}`}</span>
+    <form onSubmit={onSubmitHandler}>
       <label htmlFor="firstName">First name</label>
       <input
         id="firstName"
@@ -60,6 +40,7 @@ const Form = () => {
         onChange={onChangeHandler}
         value={formState.lastName}
       />
+      <button type="submit">Save</button>
     </form>
   );
 };
