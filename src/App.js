@@ -1,9 +1,10 @@
-import UltimateMachine from "./UltimateMachine";
+import Counter from "./Counter";
 import "./machine.css";
 
 const App = () => (
   <main>
-    <UltimateMachine />
+    <h1>Ultimate Counter</h1>
+    <Counter />
   </main>
 );
 
