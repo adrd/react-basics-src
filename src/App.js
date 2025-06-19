@@ -1,9 +1,5 @@
-import Form from "./Form";
+import Container from "./Container";
 
-const App = () => (
-  <main>
-    <Form />
-  </main>
-);
+const App = () => <Container />;
 
 export default App;
