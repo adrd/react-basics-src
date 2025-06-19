@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import "./form.css";
 
 const initialState = {
@@ -13,9 +13,48 @@ const initialState = {
   shirtSize: "",
 };
 
-const Form = () => {
-  console.log("component start executing");
+const loadedState = {
+  firstName: "Jill",
+  lastName: "Soap",
+  biography:
+    "I love React so much that I simply don't have the space for anything else in by bio!",
+  transport: "trains",
+  agree: true,
+  breakfast: true,
+  lunch: true,
+  dinner: false,
+  shirtSize: "m",
+};
+
+const FormContainer = () => {
+  console.log("component FormContainer start executing");
+  const [data, setData] = useState(initialState);
+
+  const onSubmitHandler = (formState) => {
+    console.log(formState);
+  };
+
+  const onClickHandler = () => {
+    setData(loadedState);
+  };
+
+  return (
+    <Fragment>
+      <Form onSubmit={onSubmitHandler} data={data} />
+      <button type="button" onClick={onClickHandler}>
+        Load data
+      </button>
+    </Fragment>
+  );
+};
+
+const Form = ({ onSubmit, data }) => {
+  console.log("component Form start executing");
   const [formState, setFormState] = useState(initialState);
+
+  useEffect(() => {
+    setFormState(data);
+  }, [data]);
 
   const onChangeHandler = (e) => {
     // console.log(e);
@@ -30,13 +69,10 @@ const Form = () => {
     });
   };
 
-  const onClickHandler = () => {
-    setFormState(initialState);
-  };
-
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(formState);
+    // console.log(formState);
+    onSubmit(formState);
   };
 
   return (
@@ -142,11 +178,8 @@ const Form = () => {
         checked={formState.agree}
       />
       <button type="submit">Save</button>
-      <button type="button" onClick={onClickHandler}>
-        Clear Values
-      </button>
     </form>
   );
 };
 
-export default Form;
+export default FormContainer;
