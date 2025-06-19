@@ -8,6 +8,7 @@ import "./records.scss";
 const Container = () => {
   console.log("Container component start rendering...");
   const [records, setRecords] = useState([]);
+  const [liveText, setLiveText] = useState("");
 
   const onSubmitHandler = (entry) => {
     setRecords(
@@ -21,6 +22,8 @@ const Container = () => {
         return 0;
       })
     );
+
+    setLiveText(`${entry.recordName} successfully added.`);
   };
 
   return (
@@ -34,6 +37,9 @@ const Container = () => {
           <List records={records} />
         </Section>
       </main>
+      <div className="visually-hidden" aria-live="polite" aria-atomic="true">
+        {liveText}
+      </div>
     </Fragment>
   );
 };
