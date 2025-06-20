@@ -24,28 +24,30 @@ const Container = ({ setShowApp }) => {
   const isMounted = useRef(true);
 
   useEffect(() => {
-    axios.get("/api/records").then(({ data }) => {
+    const fetchData = async () => {
+      const { data } = await axios.get("/api/records");
+
       console.log("get callback");
 
       if (isMounted.current) {
         setRecords(sortRecords(data));
       }
-    });
+    };
+
+    fetchData();
 
     return () => {
       isMounted.current = false;
     };
   }, []);
 
-  const onSubmitHandler = (entry) => {
-    axios.post("/api/records", entry).then(({ data }) => {
-      console.log("post callback");
+  const onSubmitHandler = async (entry) => {
+    const { data } = await axios.post("/api/records", entry);
 
-      if (isMounted.current) {
-        setRecords(sortRecords([...records, data]));
-        setLiveText(`${entry.recordName} successfully added.`);
-      }
-    });
+    if (isMounted.current) {
+      setRecords(sortRecords([...records, data]));
+      setLiveText(`${entry.recordName} successfully added.`);
+    }
     setShowApp(false);
   };
 
