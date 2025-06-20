@@ -25,7 +25,12 @@ const Container = ({ setShowApp }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("/api/records");
+      const { data } = await axios.get("/api/records", {
+        headers: {
+          "Cache-Control": "private",
+          "X-Custom-Header": "some-value",
+        },
+      });
 
       console.log("get callback");
 
