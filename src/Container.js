@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useRef } from "react";
 import Header from "./Header";
 import Section from "./Section";
 import List from "./List";
@@ -17,29 +17,36 @@ const sortRecords = (records) =>
     return 0;
   });
 
-const Container = () => {
+const Container = ({ setShowApp }) => {
   console.log("Container component start rendering...");
   const [records, setRecords] = useState([]);
   const [liveText, setLiveText] = useState("");
+  const isMounted = useRef(true);
 
   useEffect(() => {
     axios.get("/api/records").then(({ data }) => {
       console.log("get callback");
-      console.log(data);
-      setRecords(sortRecords(data));
+
+      if (isMounted.current) {
+        setRecords(sortRecords(data));
+      }
     });
-    // axios.get("/api/records").then((response) => {
-    //   console.log(response);
-    // });
+
+    return () => {
+      isMounted.current = false;
+    };
   }, []);
 
   const onSubmitHandler = (entry) => {
     axios.post("/api/records", entry).then(({ data }) => {
       console.log("post callback");
-      setRecords(sortRecords([...records, data]));
 
-      setLiveText(`${entry.recordName} successfully added.`);
+      if (isMounted.current) {
+        setRecords(sortRecords([...records, data]));
+        setLiveText(`${entry.recordName} successfully added.`);
+      }
     });
+    setShowApp(false);
   };
 
   return (
@@ -60,4 +67,10 @@ const Container = () => {
   );
 };
 
-export default Container;
+const Wrapper = () => {
+  const [showApp, setShowApp] = useState(true);
+
+  return showApp && <Container setShowApp={setShowApp} />;
+};
+
+export default Wrapper;
