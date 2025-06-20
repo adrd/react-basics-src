@@ -24,6 +24,7 @@ const Container = () => {
 
   useEffect(() => {
     axios.get("/api/records").then(({ data }) => {
+      console.log("get callback");
       console.log(data);
       setRecords(sortRecords(data));
     });
@@ -33,9 +34,12 @@ const Container = () => {
   }, []);
 
   const onSubmitHandler = (entry) => {
-    setRecords(sortRecords([...records, entry]));
+    axios.post("/api/records", entry).then(({ data }) => {
+      console.log("post callback");
+      setRecords(sortRecords([...records, data]));
 
-    setLiveText(`${entry.recordName} successfully added.`);
+      setLiveText(`${entry.recordName} successfully added.`);
+    });
   };
 
   return (
